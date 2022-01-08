@@ -54,11 +54,13 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/balance/:userId", async (req, res) => {
-  res.send(userBalances[req.params.userId]);
-  // eslint-disable-next-line no-console
-  console.log(await getBTCPrice());
-  // eslint-disable-next-line no-console
-  console.log(await getETHPrice());
+  const BTCPrice = await getBTCPrice();
+  const ETHPrice = await getETHPrice();
+  const userBTC = Number(userBalances[req.params.userId].BTC);
+  const userETH = Number(userBalances[req.params.userId].ETH);
+  const userBalance = userBTC * BTCPrice + userETH * ETHPrice;
+  const userBalanceData = { Balance: userBalance };
+  res.send(userBalanceData);
 });
 
 app.listen(port, () => {
