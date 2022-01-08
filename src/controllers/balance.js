@@ -15,7 +15,7 @@ const getBalanceFromUserId = async (req, res) => {
     }).format(userBalanceBTC + userBalanceETH);
     const userBalanceData = { Balance: userBalanceUSD };
     logger.info(
-      `User ${userId} called balance API. Balance Amount: ${userBalanceUSD} USD.`
+      `User ${userId} called balance API. Balance Amount: ${userBalanceUSD}`
     );
     res.status(200).send(userBalanceData);
   } catch (error) {
