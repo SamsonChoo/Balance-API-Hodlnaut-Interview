@@ -2,8 +2,9 @@
   "name": "Balance-API-Interview-Task",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "start": "nodemon src/index.js",
     "test": "mocha"
   },
   "keywords": [],
