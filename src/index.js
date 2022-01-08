@@ -1,6 +1,6 @@
 import express from "express";
 import axios from "axios";
-import logger from "../logger/index";
+import logger from "../logger/index.js";
 
 const app = express();
 const port = 3000;
