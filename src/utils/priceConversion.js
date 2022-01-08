@@ -13,7 +13,7 @@ const getCoinPrice = async (coin) => {
       return Number(latestBTCPrice);
     } catch (err) {
       logger.error(err);
-      return -1;
+      throw err;
     }
   } else {
     const e = new Error("Invalid coin type");
