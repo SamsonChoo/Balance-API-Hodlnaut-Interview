@@ -9,8 +9,11 @@ const getBalanceFromUserId = async (req, res) => {
       UserService.getUserFromUserId(userId);
     const userBalanceBTC = userBTC ? (await getCoinPrice("btc")) * userBTC : 0;
     const userBalanceETH = userETH ? (await getCoinPrice("eth")) * userETH : 0;
-    const userBalanceUSD = userBalanceBTC + userBalanceETH;
-    const userBalanceData = { Balance: `${userBalanceUSD} USD` };
+    const userBalanceUSD = new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "USD",
+    }).format(userBalanceBTC + userBalanceETH);
+    const userBalanceData = { Balance: userBalanceUSD };
     logger.info(
       `User ${userId} called balance API. Balance Amount: ${userBalanceUSD} USD.`
     );
