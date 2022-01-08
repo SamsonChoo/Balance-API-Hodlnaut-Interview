@@ -34,12 +34,15 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/balance/:userId", async (req, res) => {
+  const {userId} = req.params;
+  const { BTC: userBTC, ETH: userETH } = userBalances[userId];
   const BTCPrice = await getCoinPrice("btc");
   const ETHPrice = await getCoinPrice("eth");
-  const userBTC = Number(userBalances[req.params.userId].BTC);
-  const userETH = Number(userBalances[req.params.userId].ETH);
   const userBalanceUSD = userBTC * BTCPrice + userETH * ETHPrice;
-  const userBalanceData = { Balance: userBalanceUSD };
+  const userBalanceData = { Balance: `${userBalanceUSD} USD` };
+  logger.info(
+    `User ${userId} called balance API. Balance Amount: ${userBalanceUSD} USD.`
+  );
   res.send(userBalanceData);
 });
 
