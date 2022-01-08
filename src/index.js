@@ -1,5 +1,6 @@
 import express from "express";
 import axios from "axios";
+import logger from "../logger/index";
 
 const app = express();
 const port = 3000;
@@ -27,8 +28,7 @@ const getBTCPrice = async () => {
     } = res;
     return latestBTCPrice;
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
+    logger.error(err);
     return -1;
   }
 };
@@ -43,8 +43,7 @@ const getETHPrice = async () => {
     } = res;
     return latestETHPrice;
   } catch (err) {
-    // eslint-disable-next-line no-console
-    console.log(err);
+    logger.error(err);
     return -1;
   }
 };
@@ -71,5 +70,5 @@ app.get("*", (_req, res) => {
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Example app listening at http://localhost:${port}`);
+  logger.info(`Example app listening at http://localhost:${port}`);
 });
