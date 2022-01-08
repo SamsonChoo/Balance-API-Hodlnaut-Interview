@@ -1,3 +1,11 @@
+# Dependencies
 node_modules
+
+# Misc
 .eslintcache
+
+# Local logs
 logs
+
+# Local configurations
+.env

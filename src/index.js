@@ -1,10 +1,13 @@
 import express from "express";
 import axios from "axios";
+import dotenv from "dotenv";
 import logger from "../logger/index.js";
 import userBalances from "../mock/index.js";
 
+dotenv.config();
+
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const getCoinPrice = async (coin) => {
   if (coin.toLowerCase() === "eth" || coin.toLowerCase() === "btc") {
@@ -51,5 +54,5 @@ app.get("*", (_req, res) => {
 });
 
 app.listen(port, () => {
-  logger.info(`Example app listening at http://localhost:${port}`);
+  logger.info(`App running on http://localhost:${port}`);
 });
