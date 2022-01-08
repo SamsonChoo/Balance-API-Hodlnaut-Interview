@@ -1,22 +1,10 @@
 import express from "express";
 import axios from "axios";
 import logger from "../logger/index.js";
+import userBalances from "../mock/index.js";
 
 const app = express();
 const port = 3000;
-
-const userBalances = {
-  "user-1": {
-    BTC: "0.5",
-    ETH: "2",
-  },
-  "user-2": {
-    BTC: "0.1",
-  },
-  "user-3": {
-    ETH: "5",
-  },
-};
 
 const getBTCPrice = async () => {
   try {
@@ -59,8 +47,8 @@ app.get("/balance/:userId", async (req, res) => {
   const ETHPrice = await getETHPrice();
   const userBTC = Number(userBalances[req.params.userId].BTC);
   const userETH = Number(userBalances[req.params.userId].ETH);
-  const userBalance = userBTC * BTCPrice + userETH * ETHPrice;
-  const userBalanceData = { Balance: userBalance };
+  const userBalanceUSD = userBTC * BTCPrice + userETH * ETHPrice;
+  const userBalanceData = { Balance: userBalanceUSD };
   res.send(userBalanceData);
 });
 
