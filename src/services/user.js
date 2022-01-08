@@ -1,4 +1,4 @@
-import userBalances from "../../mock/index.js";
+import userBalances from "../../mockUserDataStorage/index.js";
 
 const getUserFromUserId = (userId) => {
   if (userBalances[userId]) {
