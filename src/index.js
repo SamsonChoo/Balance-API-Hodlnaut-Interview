@@ -50,7 +50,9 @@ const getETHPrice = async () => {
 };
 
 app.get("/", (_req, res) => {
-  res.send("Hello World!");
+  res.send(
+    "Please send a GET request to /balance/:userId to retrieve your balance in USD."
+  );
 });
 
 app.get("/balance/:userId", async (req, res) => {
@@ -61,6 +63,10 @@ app.get("/balance/:userId", async (req, res) => {
   const userBalance = userBTC * BTCPrice + userETH * ETHPrice;
   const userBalanceData = { Balance: userBalance };
   res.send(userBalanceData);
+});
+
+app.get("*", (_req, res) => {
+  res.redirect("/");
 });
 
 app.listen(port, () => {
