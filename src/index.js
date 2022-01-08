@@ -34,11 +34,11 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/balance/:userId", async (req, res) => {
-  const {userId} = req.params;
+  const { userId } = req.params;
   const { BTC: userBTC, ETH: userETH } = userBalances[userId];
-  const BTCPrice = await getCoinPrice("btc");
-  const ETHPrice = await getCoinPrice("eth");
-  const userBalanceUSD = userBTC * BTCPrice + userETH * ETHPrice;
+  const userBalanceBTC = userBTC ? (await getCoinPrice("btc")) * userBTC : 0;
+  const userBalanceETH = userETH ? (await getCoinPrice("eth")) * userETH : 0;
+  const userBalanceUSD = userBalanceBTC + userBalanceETH;
   const userBalanceData = { Balance: `${userBalanceUSD} USD` };
   logger.info(
     `User ${userId} called balance API. Balance Amount: ${userBalanceUSD} USD.`
@@ -51,6 +51,5 @@ app.get("*", (_req, res) => {
 });
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   logger.info(`Example app listening at http://localhost:${port}`);
 });
