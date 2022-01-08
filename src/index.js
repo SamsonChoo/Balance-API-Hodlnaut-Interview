@@ -3,7 +3,6 @@ import express from "express";
 const app = express();
 const port = 3000;
 
-// eslint-disable-next-line no-unused-vars
 const userBalances = {
   "user-1": {
     BTC: "0.5",
@@ -19,6 +18,10 @@ const userBalances = {
 
 app.get("/", (_req, res) => {
   res.send("Hello World!");
+});
+
+app.get("/balance/:user_id", (req, res) => {
+  res.send(userBalances[req.params.user_id]);
 });
 
 app.listen(port, () => {
