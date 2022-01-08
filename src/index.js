@@ -20,8 +20,8 @@ app.get("/", (_req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/balance/:user_id", (req, res) => {
-  res.send(userBalances[req.params.user_id]);
+app.get("/balance/:userId", (req, res) => {
+  res.send(userBalances[req.params.userId]);
 });
 
 app.listen(port, () => {
