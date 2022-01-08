@@ -1,4 +1,5 @@
 import express from "express";
+import axios from "axios";
 
 const app = express();
 const port = 3000;
@@ -16,12 +17,48 @@ const userBalances = {
   },
 };
 
+const getBTCPrice = async () => {
+  try {
+    const res = await axios.get(
+      "https://www.bitstamp.net/api/v2/ticker/btcusd"
+    );
+    const {
+      data: { last: latestBTCPrice },
+    } = res;
+    return latestBTCPrice;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+    return -1;
+  }
+};
+
+const getETHPrice = async () => {
+  try {
+    const res = await axios.get(
+      "https://www.bitstamp.net/api/v2/ticker/ethusd"
+    );
+    const {
+      data: { last: latestETHPrice },
+    } = res;
+    return latestETHPrice;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+    return -1;
+  }
+};
+
 app.get("/", (_req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/balance/:userId", (req, res) => {
+app.get("/balance/:userId", async (req, res) => {
   res.send(userBalances[req.params.userId]);
+  // eslint-disable-next-line no-console
+  console.log(await getBTCPrice());
+  // eslint-disable-next-line no-console
+  console.log(await getETHPrice());
 });
 
 app.listen(port, () => {
