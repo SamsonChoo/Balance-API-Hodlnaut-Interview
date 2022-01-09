@@ -1,5 +1,5 @@
 import logger from "../../logger/index.js";
-import { getCoinPrice } from "../utils/index.js";
+import { getCoinPrice, USDNumberToString } from "../utils/index.js";
 import { UserService } from "../services/index.js";
 
 const getBalanceFromUserId = async (req, res) => {
@@ -9,10 +9,7 @@ const getBalanceFromUserId = async (req, res) => {
       UserService.getUserFromUserId(userId);
     const userBalanceBTC = userBTC ? (await getCoinPrice("btc")) * userBTC : 0;
     const userBalanceETH = userETH ? (await getCoinPrice("eth")) * userETH : 0;
-    const userBalanceUSD = new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "USD",
-    }).format(userBalanceBTC + userBalanceETH);
+    const userBalanceUSD = USDNumberToString(userBalanceBTC + userBalanceETH);
     const userBalanceData = { Balance: userBalanceUSD };
     logger.info(
       `User ${userId} called balance API. Balance Amount: ${userBalanceUSD}`
