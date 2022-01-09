@@ -1,4 +1,12 @@
-import userBalances from "../../mockUserDataStorage/index.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const { default: userBalances } = await import(
+  process.env.NODE_ENV === "test"
+    ? process.env.TEST_DATA_PATH
+    : "../../mockUserDataStorage/index.js"
+);
 
 const getUserFromUserId = (userId) => {
   if (userBalances[userId]) {

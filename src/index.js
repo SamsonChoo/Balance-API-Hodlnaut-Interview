@@ -23,3 +23,5 @@ app.get("*", (_req, res) => {
 app.listen(port, () => {
   logger.info(`App running on http://localhost:${port}`);
 });
+
+export default app;

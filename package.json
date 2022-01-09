@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "test": "mocha",
+    "test": "cross-env NODE_ENV=test mocha 'test/**/*.js' --recursive --timeout 6000 --exit",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -13,21 +13,23 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
-    "chai": "^4.3.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mocha": "^8.3.2",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5"
   },
   "type": "module",
   "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.7",
+    "mocha": "^8.3.2",
     "prettier": "^2.5.1"
   },
   "lint-staged": {
