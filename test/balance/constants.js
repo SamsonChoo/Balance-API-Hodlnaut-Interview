@@ -9,6 +9,14 @@ const mockUserBalances = {
   "user-eth-only": {
     ETH: "5",
   },
+  "empty-user": {},
+  "user-with-empty-account": {
+    BTC: "0",
+    ETH: "0",
+  },
+  "user-bnb-only": {
+    BNB: "5",
+  },
 };
 
 export default mockUserBalances;
