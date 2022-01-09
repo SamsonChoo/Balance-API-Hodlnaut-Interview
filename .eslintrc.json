@@ -12,5 +12,13 @@
   "rules": {
     "import/extensions": ["error", "ignorePackages"],
     "import/prefer-default-export": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": "*.test.js",
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
+  ]
 }

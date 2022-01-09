@@ -92,4 +92,46 @@ describe("GET /balance/:userId tests", () => {
     const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
     expect(userBalanceUSDNumber).to.equal(0);
   });
+
+  it("should throw an error when user cannot be found", async () => {
+    const res = await chai.request(server).get("/balance/user-does-not-exist");
+    expect(res).to.have.status(404);
+    expect(res.body).to.be.an("object");
+    expect(res.body).not.to.have.property("Balance");
+
+    expect(res.body).to.have.property("Error");
+    expect(res.body.Error).to.equal("User ID not found");
+
+    expect(res.notFound).to.be.true;
+    expect(res.clientError).to.be.true;
+  });
+
+  it("should redirect the user given no user id", async () => {
+    const res = await chai.request(server).get("/balance/");
+    expect(res).to.have.status(200);
+    expect(res.body).to.be.empty;
+    expect(res.text).to.be.equal(
+      "Please send a GET request to /balance/:userId to retrieve your balance in USD."
+    );
+  });
+
+  it("should redirect the user given wrong API path", async () => {
+    const res = await chai
+      .request(server)
+      .get("/balance/user-btc-only/secretpath");
+    expect(res).to.have.status(200);
+    expect(res.body).to.be.empty;
+    expect(res.text).to.be.equal(
+      "Please send a GET request to /balance/:userId to retrieve your balance in USD."
+    );
+  });
+
+  it("should redirect the user given wrong API path", async () => {
+    const res = await chai.request(server).get("/balancce/user-btc-only");
+    expect(res).to.have.status(200);
+    expect(res.body).to.be.empty;
+    expect(res.text).to.be.equal(
+      "Please send a GET request to /balance/:userId to retrieve your balance in USD."
+    );
+  });
 });
