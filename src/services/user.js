@@ -5,7 +5,7 @@ dotenv.config();
 // Dynamic import to determine where to import data from depending on node env
 const { default: userBalances } = await import(
   process.env.NODE_ENV === "test"
-    ? process.env.TEST_DATA_PATH
+    ? "../../test/constants.js"
     : "../../mockUserDataStorage/index.js"
 );
 
