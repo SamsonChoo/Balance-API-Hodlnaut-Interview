@@ -1,6 +1,11 @@
 import axios from "axios";
 import logger from "../../logger/index.js";
 
+/**
+ * Returns the latest price of a cryptocurrency coin in USD
+ * @param {number} coin - the name of the coin, currently limited to eth or btc
+ * @return {number} the value of the coin in USD
+ */
 const getCoinPrice = async (coin) => {
   if (coin.toLowerCase() === "eth" || coin.toLowerCase() === "btc") {
     try {

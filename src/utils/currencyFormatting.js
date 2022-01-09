@@ -1,8 +1,19 @@
-const USDNumberToString = (amount) => new Intl.NumberFormat("en-IN", {
+/**
+ * Converts a number into string representation of USD value
+ * @param {number} amount
+ * @return {string} formatted string
+ */
+const USDNumberToString = (amount) =>
+  new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "USD",
   }).format(amount);
 
+/**
+ * Converts a USD string into numerical value
+ * @param {string} string
+ * @return {number} formatted number
+ */
 const USDStringToNumber = (string) => {
   const thousandSeparator = Intl.NumberFormat("en-IN")
     .format(11111)
@@ -12,8 +23,8 @@ const USDStringToNumber = (string) => {
     .replace(/\p{Number}/gu, "");
   return parseFloat(
     string
-      .replace(new RegExp(`\\${  thousandSeparator}`, "g"), "")
-      .replace(new RegExp(`\\${  decimalSeparator}`), ".")
+      .replace(new RegExp(`\\${thousandSeparator}`, "g"), "")
+      .replace(new RegExp(`\\${decimalSeparator}`), ".")
   );
 };
 
