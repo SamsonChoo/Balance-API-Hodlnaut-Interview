@@ -49,9 +49,9 @@ const userBalances = {
 
 This repository was developed with the system below:
 
-- Node.js v14.16.1 (Code may not work on lower versions of Node which does not support dynamic import and named imports from CommonJS modules)
-- npm 6.14.12
-- Windows 11
+- Node.js v16.13.1 (Code may not work on lower versions of Node which do not support dynamic import and named imports from CommonJS modules)
+- npm 8.1.2
+- Windows 11 (But was tested to work on Unix-based system)
 
 ## How to use
 

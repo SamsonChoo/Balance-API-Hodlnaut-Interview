@@ -14,9 +14,9 @@ describe("GET /balance/:userId tests", () => {
 
     const userBalanceUSD = res.body.Balance;
     expect(userBalanceUSD).to.be.a("string");
-    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("US$")); // Check that it is returning the correct currency
+    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("$")); // Check that it is returning the correct currency
 
-    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
+    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(1));
     expect(userBalanceUSDNumber).to.be.least(0);
     expect(userBalanceUSDNumber * 100).to.be.above(0); // Check that is it 2 decimal places
   });
@@ -29,9 +29,9 @@ describe("GET /balance/:userId tests", () => {
 
     const userBalanceUSD = res.body.Balance;
     expect(userBalanceUSD).to.be.a("string");
-    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("US$")); // Check that it is returning the correct currency
+    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("$")); // Check that it is returning the correct currency
 
-    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
+    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(1));
     expect(userBalanceUSDNumber).to.be.least(0);
     expect(userBalanceUSDNumber * 100).to.be.above(0); // Check that is it 2 decimal places
   });
@@ -44,9 +44,9 @@ describe("GET /balance/:userId tests", () => {
 
     const userBalanceUSD = res.body.Balance;
     expect(userBalanceUSD).to.be.a("string");
-    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("US$")); // Check that it is returning the correct currency
+    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("$")); // Check that it is returning the correct currency
 
-    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
+    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(1));
     expect(userBalanceUSDNumber).to.be.least(0);
     expect(userBalanceUSDNumber * 100).to.be.above(0); // Check that is it 2 decimal places
   });
@@ -59,9 +59,9 @@ describe("GET /balance/:userId tests", () => {
 
     const userBalanceUSD = res.body.Balance;
     expect(userBalanceUSD).to.be.a("string");
-    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("US$")); // Check that it is returning the correct currency
+    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("$")); // Check that it is returning the correct currency
 
-    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
+    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(1));
     expect(userBalanceUSDNumber).to.equal(0);
   });
 
@@ -73,9 +73,9 @@ describe("GET /balance/:userId tests", () => {
 
     const userBalanceUSD = res.body.Balance;
     expect(userBalanceUSD).to.be.a("string");
-    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("US$")); // Check that it is returning the correct currency
+    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("$")); // Check that it is returning the correct currency
 
-    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
+    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(1));
     expect(userBalanceUSDNumber).to.equal(0);
   });
 
@@ -87,9 +87,9 @@ describe("GET /balance/:userId tests", () => {
 
     const userBalanceUSD = res.body.Balance;
     expect(userBalanceUSD).to.be.a("string");
-    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("US$")); // Check that it is returning the correct currency
+    expect(userBalanceUSD).to.satisfy((s) => s.startsWith("$")); // Check that it is returning the correct currency
 
-    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(3));
+    const userBalanceUSDNumber = USDStringToNumber(userBalanceUSD.substring(1));
     expect(userBalanceUSDNumber).to.equal(0);
   });
 
